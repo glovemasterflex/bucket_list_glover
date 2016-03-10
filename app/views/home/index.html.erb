@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+  <br />
+  
+    <div class="row">
+      <% current_user.buckets.each do |bucket| %>
+        <div class="col s3">
+          <div class="card-panel light-blue darken-2">
+            <p><%= link_to bucket.name, bucket_path(bucket) %></p>
+              <ul>
+                <% bucket.items.each do |item| %>
+                <li><p><%= item.name %></p></li>
+                <% end %>
+              </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+<br />
+
+<% else %>
+<%= link_to 'Login', new_user_session_path %>
+<%= link_to 'Sign Up', new_user_registration_path %>
+<% end %>
